@@ -1,15 +1,5 @@
 import React, {Component} from 'react';
-import $ from 'jquery';
-
 class Images extends Component {
-
-  componentDidMount(){
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-      event.preventDefault();
-      debugger;
-      $(this).ekkoLightbox();
-    });
-  }
   render(){
     return(
     <div>
@@ -25,7 +15,7 @@ class Images extends Component {
             <div className="card wow zoomIn">
               <div className="card-block p-05 ">
                 <div className="withripple zoom-img">
-                  <a href="assets/img/demo/port1.jpg" data-toggle="lightbox" data-title="MY caption">
+                  <a href="assets/img/demo/port1.jpg" data-lightbox="gallery" data-title="MY caption">
                     <img src="assets/img/demo/port1.jpg" alt="" className="img-responsive"/>
                   </a>
                 </div>
