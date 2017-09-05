@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import $ from 'jquery'
-import ReactDOM from 'react-dom'
+import $ from 'jquery';
+
 class Images extends Component {
 
   componentDidMount(){

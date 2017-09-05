@@ -6,6 +6,7 @@
     "react-scripts": "1.0.10"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "jquery": "^3.2.1",
     "lightbox-react": "^0.1.5",
     "moment": "^2.18.1",
