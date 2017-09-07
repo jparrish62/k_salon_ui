@@ -11,6 +11,7 @@ import Stylist                        from './Components/Stylist';
 import About                          from './Components/About';
 import CreateStylist                  from './Components/CreateStylist';
 import ImageGallery                   from './Components/ImageGallery';
+import LightboxUpload                  from './Components/LightboxUpload'
 import Home                           from './Components/Home';
 
 ReactDOM.render(
@@ -24,7 +25,8 @@ ReactDOM.render(
       <Route exact path="/profileData/:id"     component={ProfileData}/>
       <Route exact path="/CreateStylist"       component={CreateStylist}/>
       <Route exact path="/About"               component={About}/>
-      <Route exact path="/gallery"             component={ImageGallery}/>
+      <Route exact path="/gallery/:id"         component={ImageGallery}/>
+      <Route exact path="/imgUpload/:id"       component={LightboxUpload}/>
     </Switch>
   </BrowserRouter>
   , document.getElementById('root'));

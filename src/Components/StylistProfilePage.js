@@ -103,7 +103,7 @@ class Profile extends Component {
                 <tr>
                   <th>
                     <i className="zmdi zmdi-view-comfy"></i> View</th>
-                  <Link to={'/gallery'}><td>Recent Work</td></Link>
+                  <Link to={'/gallery/' + localStorage.getItem('stylist_id')} id={localStorage.getItem('stylist_id')}><td>Recent Work</td></Link><Link to={'/imgUpload/' + localStorage.getItem('stylist_id')} id={localStorage.getItem('stylist_id')}><td>Add Work</td></Link>
                 </tr>
               </table>
             </div>
