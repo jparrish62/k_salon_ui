@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import '../Styles/styles.css'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Navbar from './Navbar'
 class Home extends Component {
   render() {
@@ -16,6 +18,13 @@ class Home extends Component {
         </div>
       </div>
       <div className="container">
+        <ReactCSSTransitionGroup
+          transitionAppear={true}
+          transitionAppearTimeout={1500}
+          transitionEnterTimeout={1500}
+          transitionLeaveTimeout={200}
+          transitionName={'home'}
+        >
         <div className="row">
           <div className="card-top">
             <div className="col-md-4">
@@ -107,9 +116,8 @@ class Home extends Component {
               </div>
             </div>
           </div>
-
-
         </div>
+        </ReactCSSTransitionGroup>
       </div>
       </div>
     );

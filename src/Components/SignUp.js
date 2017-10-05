@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Link, withRouter}   from 'react-router-dom'
+import '../Styles/styles.css'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import $                    from 'jquery';
 class SignUp extends Component {
 
@@ -29,6 +31,13 @@ class SignUp extends Component {
   render() {
     return (
       <div className="App">
+      <ReactCSSTransitionGroup
+        transitionAppear={true}
+        transitionAppearTimeout={1500}
+        transitionEnterTimeout={1500}
+        transitionLeaveTimeout={200}
+        transitionName={'home'}
+      >
       <div className="bg-full-page ms-hero-bg-dark ms-hero-img-airplane back-fixed">
         <div className="mw-500 absolute-center">
           <div className="card color-dark shadow-6dp animated fadeIn animation-delay-7">
@@ -99,6 +108,7 @@ class SignUp extends Component {
           </div>
         </div>
       </div>
+      </ReactCSSTransitionGroup>
       </div>
     );
   }

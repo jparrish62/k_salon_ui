@@ -1,18 +1,19 @@
-import React                          from 'react';
-import ReactDOM                       from 'react-dom';
+import React                                    from 'react';
+import ReactDOM                                 from 'react-dom';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
-import                                     './index.css';
-import App                            from './App';
-import registerServiceWorker          from './registerServiceWorker';
-import ProfileData                    from './Components/profileData';
-import LogIn                          from './Components/LogIn';
-import SignUp                         from './Components/SignUp';
-import Stylist                        from './Components/Stylist';
-import About                          from './Components/About';
-import CreateStylist                  from './Components/CreateStylist';
-import ImageGallery                   from './Components/ImageGallery';
-import LightboxUpload                  from './Components/LightboxUpload'
-import Home                           from './Components/Home';
+import                                               './index.css';
+import App                                      from './App';
+import registerServiceWorker                    from './registerServiceWorker';
+import ProfileData                              from './Components/profileData';
+import LogIn                                    from './Components/LogIn';
+import SignUp                                   from './Components/SignUp';
+import Stylist                                  from './Components/Stylist';
+import About                                    from './Components/About';
+import CreateStylist                            from './Components/CreateStylist';
+import ImageGallery                             from './Components/ImageGallery';
+import LightboxUpload                           from './Components/LightboxUpload';
+import Home                                     from './Components/Home';
+
 
 ReactDOM.render(
   <BrowserRouter>

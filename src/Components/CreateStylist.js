@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Dropzone             from 'react-dropzone'
-import createBrowserHistory from 'history/createBrowserHistory'
+import '../Styles/styles.css'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import request              from 'superagent';
-import {Link}               from 'react-router-dom';
+import {Link, withRouter}               from 'react-router-dom';
 import $                    from 'jquery';
-const history = createBrowserHistory();
 const CLOUDINARY_UPLOAD_PRESET = 'spldj9cn';
 const CLOUDINARY_UPLOAD_URL    = 'https://api.cloudinary.com/v1_1/dfqfircuv/upload';
 class CreateStylist extends Component {
@@ -49,14 +49,13 @@ handleImageUpload(file) {
       headers: {'Authorization' : auth_token.replace(/"/g,""), "Accept" : "application/vnd.api_karma_s.v1"},
       cache: false,
       success: (response) => {
+        return this.props.history.push("/Stylist");
         console.log(response);
       },
       error: function(xhr, status, err){
         console.log(err);
       }
-    }).then(() => {
-       history.push('/Stylist');
-      });
+    })
     e.preventDefault();
 
   }
@@ -66,6 +65,13 @@ handleImageUpload(file) {
     console.log('string', string);
     return (
       <div className="App">
+      <ReactCSSTransitionGroup
+        transitionAppear={true}
+        transitionAppearTimeout={1500}
+        transitionEnterTimeout={1500}
+        transitionLeaveTimeout={200}
+        transitionName={'home'}
+      >
       <div className="bg-full-page ms-hero-bg-dark ms-hero-img-airplane back-fixed">
         <div className="mw-500 absolute-center">
           <div className="card color-dark shadow-6dp animated fadeIn animation-delay-7">
@@ -155,9 +161,10 @@ handleImageUpload(file) {
           </div>
         </div>
       </div>
+      </ReactCSSTransitionGroup>
       </div>
     );
   }
 }
 
-export default CreateStylist;
+export default withRouter(CreateStylist);

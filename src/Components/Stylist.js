@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import IndexPage          from './StylistIndexPage';
+import '../Styles/styles.css'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Footer             from './Footer'
 import $                  from 'jquery'
 import Navbar             from './Navbar';
@@ -36,8 +38,16 @@ class Stylist extends Component {
     return (
       <div>
         <Navbar/>
-        <IndexPage index={this.state.index}/>
-        <Footer/>
+        <ReactCSSTransitionGroup
+        transitionAppear={true}
+        transitionAppearTimeout={1500}
+        transitionEnterTimeout={1500}
+        transitionLeaveTimeout={200}
+        transitionName={'example'}
+      >
+          <IndexPage index={this.state.index}/>
+      </ReactCSSTransitionGroup>
+          <Footer/>
       </div>
     )
   }

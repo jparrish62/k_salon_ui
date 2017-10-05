@@ -3,6 +3,7 @@ import Navbar from './Components/Navbar'
 import Home       from './Components/Home'
 import Footer     from './Components/Footer'
 
+
 class App extends Component {
   constructor(){
     super();
@@ -15,7 +16,7 @@ class App extends Component {
     return (
       <div>
         <Navbar/>
-        <Home/>
+          <Home/>
         <Footer/>
       </div>
 
