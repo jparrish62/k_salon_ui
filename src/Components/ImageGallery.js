@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Navbar             from './Navbar';
-import MapImages             from './MapImages';
+import MapImages          from './MapImages';
 import Footer             from './Footer'
 import $                  from 'jquery';
 class ImageGallery extends Component {

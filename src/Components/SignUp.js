@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link}               from 'react-router-dom';
+import {Link, withRouter}   from 'react-router-dom'
 import $                    from 'jquery';
 class SignUp extends Component {
 
@@ -16,7 +16,9 @@ class SignUp extends Component {
       success: (response) => {
         console.log(response);
         localStorage.setItem('user_id', response.id)
+        localStorage.setItem('role', response.role)
         localStorage.setItem('auth_token', JSON.stringify(response.auth_token))
+        return this.props.history.push("/");
       },
       error: function(xhr, status, err){
         console.log(err);
@@ -102,4 +104,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);

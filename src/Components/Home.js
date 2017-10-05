@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import Navbar from './Navbar'
 class Home extends Component {
   render() {
     return (
       <div className="App">
+      <Navbar/>
       <div className="ms-hero-page-override ms-hero-img-team ms-hero-bg-primary">
         <div className="container">
           <div className="text-center">

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import {Link}               from 'react-router-dom'
-import createBrowserHistory from 'history/createBrowserHistory';
+import Home                 from './Home'
+import {Link, withRouter}               from 'react-router-dom'
 import $                    from 'jquery'
-const history = createBrowserHistory();
 class LogIn extends Component {
 
   handleLogIn(e){
@@ -17,12 +16,15 @@ class LogIn extends Component {
       headers: {"Accept" : "application/vnd.api_karma_s.v1"},
       cache: false,
       success: (response) => {
-        console.log(response);
-        localStorage.setItem('user_id', response.id)
-        localStorage.setItem('auth_token', response.auth_token)
-        if(response){return window.location.asign('/Home')}
+        if(response) {
+          console.log(response);
+          localStorage.setItem('user_id', response.id)
+          localStorage.setItem('auth_token', response.auth_token)
+          localStorage.setItem('role', response.role)
+          return this.props.history.push("/");
+        }
       },
-      error: function(xhr, status, err){
+      error: (xhr, status, err) => {
         console.log(err);
       }
     });
@@ -170,4 +172,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+export default withRouter(LogIn);

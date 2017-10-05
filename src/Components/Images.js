@@ -11,7 +11,7 @@ class Images extends Component {
         <div className="card wow zoomIn">
           <div className="card-block p-05 ">
             <div className="withripple zoom-img">
-              <a href={this.props.images}data-lightbox="gallery" data-title={this.props.cap}>
+              <a href={this.props.images} data-lightbox="gallery" data-title={this.props.cap}>
                 <img src={this.props.images} alt="" className="img-responsive"/>
               </a>
             </div>

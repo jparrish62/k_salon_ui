@@ -68,7 +68,7 @@ class Profile extends Component {
           <form>
             <div className="col-md-4">
               <div className="card-block">
-                <h2 className="color-primary no-mb">{this.state.errors ? this.state.errors : 'Create an appointment'}</h2>
+                <h2 className="color-primary no-mb">{this.state.errors ? 'Sorry Date Unavailable' : 'Create an appointment'}</h2>
               </div>
               <table className="table table-no-border table-striped">
                 <tr>
