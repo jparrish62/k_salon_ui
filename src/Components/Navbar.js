@@ -21,7 +21,7 @@ class Navbar extends Component {
                 </Link>
               </li>
               <li className="dropdown">
-                <Link to={'/Stylist'} className="dropdown-toggle animated fadeIn animation-delay-5" data-toggle="dropdown" data-hover="dropdown" data-name="page">Stylist
+                <Link to={'/Stylist'} className="dropdown-toggle animated fadeIn animation-delay-5" data-toggle="dropdown" data-hover="dropdown" data-name="page">Stylists
                 </Link>
                 <ul className="dropdown-menu dropdown-megamenu animated fadeIn animated-2x">
                   <li>
