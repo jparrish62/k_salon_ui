@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Home                 from './Home'
 import {Link, withRouter}               from 'react-router-dom'
 import '../Styles/styles.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -23,13 +22,16 @@ class LogIn extends Component {
           localStorage.setItem('user_id', response.id)
           localStorage.setItem('auth_token', response.auth_token)
           localStorage.setItem('role', response.role)
-          return this.props.history.push("/");
+          return this.props.history.push("/Stylist");
         }
       },
       error: (xhr, status, err) => {
         console.log(err);
       }
     });
+    this.email.value = ''
+    this.password.value = ''
+    this.user_name.value = ''
     e.preventDefault();
   }
 

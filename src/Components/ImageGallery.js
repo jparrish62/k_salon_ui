@@ -16,8 +16,6 @@ class ImageGallery extends Component {
 
   getImages(){
     let id         = localStorage.getItem('stylist_id');
-    let user_id    = localStorage.getItem('user_id');
-    console.log('id', id);
    $.ajax({
      url: `http://api.api_karma_s.dev/stylists/${id}`,
      type: 'GET',

@@ -50,12 +50,15 @@ handleImageUpload(file) {
       cache: false,
       success: (response) => {
         return this.props.history.push("/Stylist");
-        console.log(response);
       },
       error: function(xhr, status, err){
         console.log(err);
       }
     })
+    this.email.value = ''
+    this.first_name.value = ''
+    this.last_name.value = ''
+    this.bio.value = ''
     e.preventDefault();
 
   }

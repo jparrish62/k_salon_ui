@@ -1,40 +1,55 @@
 import React, { Component } from 'react';
 import 'react-date-picker/index.css'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import $ from 'jquery'
-class Profile extends Component {
-  constructor(){
-    super();
-    this.state = {
-      errors: ''
-    }
-  }
 
+class Profile extends Component {
+constructor(error){
+  super(error);
+  this.error = error;
+}
   createAppointment(e){
-    let stylist_id = localStorage.getItem('stylist_id');
-    let auth_token = localStorage.getItem('auth_token');
-    let user_id    = localStorage.getItem('user_id');
-    $.ajax({
-      url: `http://api.api_karma_s.dev//users/${user_id}/stylists/${stylist_id}/appointments.json`,
-      type: 'POST',
-      dataType: 'json',
-      data: JSON.stringify({appointment:{basic_services: this.basic_services.value, chemical_services: this.chemical_services.value, color_services: this.color_services.value,
-                                         treatment_services:this.treatment_services.value, braids:this.braids.value, start_time: this.date.value, name: this.name.value, comment: this.comment.value  }}),
-      contentType: "application/json",
-      headers: {'Authorization' : auth_token.replace(/"/g,""), "Accept" : "application/vnd.api_karma_s.v1"},
-      cache: false,
-      success: (response) => {
-        console.log(response);
-      },
-      error: (xhr, status, errors) => {
-        console.log(errors.message);
-        this.setState({errors});
-      }
-    })
+    if(localStorage.getItem('auth_token')){
+      let stylist_id = localStorage.getItem('stylist_id');
+      let auth_token = localStorage.getItem('auth_token');
+      let user_id    = localStorage.getItem('user_id');
+      $.ajax({
+        url: `http://api.api_karma_s.dev//users/${user_id}/stylists/${stylist_id}/appointments.json`,
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify({appointment:{basic_services: this.basic_services.value, chemical_services: this.chemical_services.value, color_services: this.color_services.value,
+                                           treatment_services:this.treatment_services.value, braids:this.braids.value, start_time: this.date.value, name: this.name.value, comment: this.comment.value  }}),
+        contentType: "application/json",
+        headers: {'Authorization' : auth_token.replace(/"/g,""), "Accept" : "application/vnd.api_karma_s.v1"},
+        cache: false,
+        success: (response) => {
+          console.log(response);
+        let errors = new Profile('Your Appointment Has Been Created You Will Receive An Confirmation Email')
+        },
+        error: (xhr, status, errors) => {
+          console.log(errors);
+        }
+      })
+      this.date.value               = " "
+      this.name.value               = " "
+      this.comment.value            = " "
+      this.basic_services.value     = " "
+      this.chemical_services.value  = " "
+      this.color_services.value     = " "
+      this.treatment_services.value = " "
+      this.braids.value             = " "
+    }
     e.preventDefault();
   }
 
   render() {
+    console.log(this.error);
+    let error;
+    if(!localStorage.getItem('auth_token')) {
+      error = 'Please Sign In To Create An Appointment'
+    }else if(localStorage.getItem('auth_token')) {
+      error = 'Your Are Currently Signed In'
+    }
     return (
       <div className="App">
       <div className="ms-hero-page-override ms-hero-img-coffee ms-bg-fixed ms-hero-bg-primary">
@@ -42,33 +57,20 @@ class Profile extends Component {
           <div className="text-center mt-2">
             <img src={this.props.data.profile_pic} alt="..." className="ms-avatar-hero animated zoomIn animation-delay-7"/>
             <h1 className="color-white mt-4 animated fadeInUp animation-delay-10">{this.props.data.first_name}</h1>
-            <h3 className="color-medium no-mb animated fadeInUp animation-delay-10">@anasanz</h3>
+            <Link to={'/gallery/' + localStorage.getItem('stylist_id')} id={localStorage.getItem('stylist_id')}><div className="text-center"><button type="button" className="btn btn-raised btn-primary">View Recent Work</button></div></Link>
           </div>
         </div>
       </div>
       <div className="container">
         <div className="card card-hero card-primary animated fadeInUp animation-delay-7">
           <div className="card-header-100 bg-primary-dark">
-            <div className="row">
-              <div className="col-sm-2 col-xs-4 col-sm-offset-3">
-                <div className="item">
-                  <span>142</span>Posts </div>
-              </div>
-              <div className="col-sm-2 col-xs-4">
-                <div className="item">
-                  <span>75</span>Comments </div>
-              </div>
-              <div className="col-sm-2 col-xs-4">
-                <div className="item">
-                  <span>96</span>Tweets </div>
-              </div>
-            </div>
+          <div className="alert alert-primary text-center" role="alert">{error}</div>
           </div>
           <div className="row">
           <form>
             <div className="col-md-4">
               <div className="card-block">
-                <h2 className="color-primary no-mb">{this.state.errors ? 'Sorry Date Unavailable' : 'Create an appointment'}</h2>
+                <h2 className="color-primary no-mb">Create an appointment</h2>
               </div>
               <table className="table table-no-border table-striped">
                 <tr>
@@ -236,4 +238,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default withRouter(Profile);

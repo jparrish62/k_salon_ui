@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Dropzone             from 'react-dropzone'
-import createBrowserHistory from 'history/createBrowserHistory'
 import request              from 'superagent';
-import {Link, withRouter}               from 'react-router-dom';
+import {Link, withRouter}   from 'react-router-dom';
 import $                    from 'jquery';
-const history = createBrowserHistory();
 const CLOUDINARY_UPLOAD_PRESET = 'spldj9cn';
 const CLOUDINARY_UPLOAD_URL    = 'https://api.cloudinary.com/v1_1/dfqfircuv/upload';
 class LightboxUpload extends Component {
@@ -51,7 +49,7 @@ handleImageUpload(file) {
       cache: false,
       success: (response) => {
         console.log(response);
-        return this.props.history.push('/gallery' + stylist_id)
+        return this.props.history.push('/gallery/' + stylist_id)
       },
       error: function(xhr, status, err){
         console.log(err);

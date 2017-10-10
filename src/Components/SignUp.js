@@ -26,6 +26,10 @@ class SignUp extends Component {
         console.log(err);
       }
     });
+    this.email.value = ''
+    this.password.value = ''
+    this.re_password.value = ''
+    this.user_name.value = ''
     e.preventDefault();
   }
   render() {
