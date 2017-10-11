@@ -11,7 +11,6 @@ class Home extends Component {
       <Navbar/>
       <div className="ms-hero-page-override ms-hero-img-team ms-hero-bg-primary">
         <div className="container">
-        {localStorage.getItem('user_id') ? <div className="alert alert-primary text-center" role="alert">Your Are Currently Signed In</div> : " "}
           <div className="text-center">
             <h1 className="no-m ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5">Salon Karma</h1>
             <p className="lead lead-lg color-medium text-center center-block mt-2 mw-800 text-uppercase fw-300 animated fadeInUp animation-delay-7">Let the

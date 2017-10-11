@@ -42,8 +42,11 @@ class Profile extends Component {
           this.treatment_services.value = " "
           this.braids.value             = " "
         },
-        error: (xhr, status, errors) => {
-          this.setState({message: "Please make sure that you've filled in all the fields."})
+        error: (xhr, status, errorMessage) => {
+          const errors = $.parseJSON(xhr.responseText).errors
+          errors.map((e) => {
+            this.setState({message: e})
+          })
         }
       })
     }
