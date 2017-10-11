@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import 'react-date-picker/index.css'
-import {Link, withRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import $ from 'jquery'
 
 class Profile extends Component {
-constructor(error){
-  super(error);
-  this.error = error;
-}
+  constructor(error){
+    super(error)
+    this.state = { message: ''}
+  }
+
+  componentDidMount() {
+    if(localStorage.getItem('auth_token')) {
+      this.setState({message: 'You Are Currently Signed In'})
+    } else {
+      this.setState({ message: 'Please Sign In To Create An Appointment'})
+    }
+  }
+
   createAppointment(e){
     if(localStorage.getItem('auth_token')){
       let stylist_id = localStorage.getItem('stylist_id');
@@ -23,33 +32,25 @@ constructor(error){
         headers: {'Authorization' : auth_token.replace(/"/g,""), "Accept" : "application/vnd.api_karma_s.v1"},
         cache: false,
         success: (response) => {
-          console.log(response);
-        let errors = new Profile('Your Appointment Has Been Created You Will Receive An Confirmation Email')
+          this.setState({message: "You have successfully created an appointment."})
+          this.date.value               = " "
+          this.name.value               = " "
+          this.comment.value            = " "
+          this.basic_services.value     = " "
+          this.chemical_services.value  = " "
+          this.color_services.value     = " "
+          this.treatment_services.value = " "
+          this.braids.value             = " "
         },
         error: (xhr, status, errors) => {
-          console.log(errors);
+          this.setState({message: "Please make sure that you've filled in all the fields."})
         }
       })
-      this.date.value               = " "
-      this.name.value               = " "
-      this.comment.value            = " "
-      this.basic_services.value     = " "
-      this.chemical_services.value  = " "
-      this.color_services.value     = " "
-      this.treatment_services.value = " "
-      this.braids.value             = " "
     }
     e.preventDefault();
   }
 
   render() {
-    console.log(this.error);
-    let error;
-    if(!localStorage.getItem('auth_token')) {
-      error = 'Please Sign In To Create An Appointment'
-    }else if(localStorage.getItem('auth_token')) {
-      error = 'Your Are Currently Signed In'
-    }
     return (
       <div className="App">
       <div className="ms-hero-page-override ms-hero-img-coffee ms-bg-fixed ms-hero-bg-primary">
@@ -64,7 +65,7 @@ constructor(error){
       <div className="container">
         <div className="card card-hero card-primary animated fadeInUp animation-delay-7">
           <div className="card-header-100 bg-primary-dark">
-          <div className="alert alert-primary text-center" role="alert">{error}</div>
+          <div className="alert alert-primary text-center" role="alert">{this.state.message}</div>
           </div>
           <div className="row">
           <form>
@@ -238,4 +239,4 @@ constructor(error){
   }
 }
 
-export default withRouter(Profile);
+export default Profile;
